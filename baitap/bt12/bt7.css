@@ -1,0 +1,29 @@
+.sum{
+    display: flex;
+    gap: 10px;
+   
+}
+.card{
+    color: #f7f8f5;
+    margin-left: 3px;
+}
+.img{
+    height: 200px;
+    width: 500px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.bo{
+    border-radius: 50%;
+}
+.card-img-overlay{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 50px;
+    
+}
+.card-text{
+    margin-top: 10px;
+    padding-left: 20px;
+}

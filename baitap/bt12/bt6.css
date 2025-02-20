@@ -1,0 +1,25 @@
+.text{
+    text-align: center;
+    font-size: 40px;
+    position: relative;
+    top: 223px;
+    right: 22px;;
+}
+.sum{
+    display: flex;
+    gap: 10px;
+    margin: 220px 300px;
+}
+.card{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+a{
+    height: 40px;
+    width: 200px;
+}
+.note{
+    background-color: #FFC12B;
+}

@@ -1,0 +1,63 @@
+.header{
+    background-color: aquamarine;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 50px;
+}
+.body{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+.body .bodyone{
+    background-color: indianred;
+    width: 50%;
+    height: 250px;
+}
+.body .bodytwo{
+    background-color: darkgoldenrod;
+    width: 50%;
+    height: 250px;
+}
+.footer{
+    display: flex;
+    gap: 10px;
+}
+.footer .footer1{
+    background-color: darkblue;
+    width: 33%;
+    height: 250px;
+}
+.footer .footer2{
+    background-color: lightpink;
+    width: 33%;
+    height: 250px;
+}
+.footer .footer3{
+    background-color: goldenrod;
+    width: 33%;
+    height: 250px;
+}
+@media screen and (max-width:768px){
+    .body{
+        flex-direction: column;
+    }
+    .body .bodyone{
+        width: 100%;
+    }
+    .body .bodytwo{
+        width: 100%;
+    }
+    .footer{
+        flex-direction: column;
+    }
+    .footer .footer1{
+        width: 100%;
+    }
+    .footer .footer2{
+        width: 100%;
+    }
+    .footer .footer3{
+        width: 100%;
+    }
+}

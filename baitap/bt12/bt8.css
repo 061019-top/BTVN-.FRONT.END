@@ -1,0 +1,13 @@
+.sum{
+    padding-top: 0px;
+}
+.footer{
+    display: flex;
+    margin-bottom: 10px;
+}
+.footer .col-md-2{
+    margin-right: 10px;
+}
+.body{
+    display: flex;
+}

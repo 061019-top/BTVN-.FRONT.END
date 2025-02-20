@@ -1,0 +1,150 @@
+
+.header{
+    display: flex;
+
+}
+.header .logo{
+    color: #9F4B4A;
+    font-size: 50px;
+    font-weight: bolder;
+    width: 20%;
+}
+.header .nav{
+    background-color: #9F4B4A;
+    margin-right: 0p;
+    width: 80%;
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header .touch img{
+    height: 30px;
+    width: 30px;
+    opacity: 0;
+    position: absolute;
+}
+.body{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.body .main{
+    background-color: #9F4B4A;
+    width: 67%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+}
+.body .aside{
+    background-color: #9F4B4A;
+    width: 33%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+}
+.footerone{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.footerone div{
+    background-color: #9F4B4A;
+    width: 33%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+
+}
+.footertwo{
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.footertwo div{
+    background-color: #9F4B4A;
+    width: 33%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+
+}
+@media screen and (max-width:768px){
+    .header .nav{
+        margin-left: 80px;
+    }
+    .body{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .body .main{
+        width: 100%;
+    }
+    .body .aside{
+        width: 100%;
+    }
+    .footerone{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .footerone div{
+        width: 40%;
+    }
+   
+}
+@media screen and (max-width:480px){
+    .header{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .header .nav{
+        width: 100%;
+        height: 120px;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+    .header .touch img{
+        opacity: 1;
+        position: relative;
+        bottom: 160px;
+        left: 400px;
+    }
+    .body{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .body .main{
+        width: 100%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .body .aside{
+        width: 100%;
+    }
+    .footerone{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .footerone div{
+        width: 100%;
+    }
+    
+}

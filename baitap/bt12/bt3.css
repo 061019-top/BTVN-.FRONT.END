@@ -1,0 +1,11 @@
+.sum{
+    border: 10px solid darkgray;
+    padding: 10px 10px;
+}
+button{
+    background-color: #188754;
+    color: #fff;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+}

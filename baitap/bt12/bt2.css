@@ -1,0 +1,7 @@
+.footer{
+    display: flex;
+}
+input{
+    position: relative;
+    bottom: 10px;
+}

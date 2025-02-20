@@ -1,0 +1,14 @@
+h2{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.thead{
+    background-color: #212529;
+    color: white;
+    font-weight: bold;
+}
+.one{
+    background-color: #F2F2F2;
+}
