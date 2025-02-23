@@ -76,3 +76,56 @@
 .flash-sale p{
     margin-left: 175px;
 }
+.product{
+    display: flex;
+    gap: 20px;
+    margin-left: 135px;
+}
+.product .maudo{
+    color: #DB4444;
+}
+.product .gach{
+    text-decoration: line-through;
+}
+.product .mo{
+    opacity: 0.6;
+}
+.product img{
+    border-radius: 5px;
+}
+button{
+    background-color: #DB4444;
+    color: #fff;
+    text-align: center;
+    width: 243px;
+    height: 56px;
+    border: none;
+    border-radius: 5px;
+    margin: 20px 39%;
+}
+.category{
+    display: flex;
+    width: 1170px;
+    justify-content: space-between;
+    margin-left: 135px;
+}
+.selection{
+    width: 1170px;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-left: 135px;
+}
+.selection div{
+    border: 1px solid black;
+    width: 150px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.selection .camera{
+    background-color: #DB4444;
+    color: #fff;
+}
