@@ -1,0 +1,78 @@
+.header-top{
+    background-color: #000000;
+    color: #fff;
+    display: flex;
+    gap: 231px;
+    align-items: center;
+}
+.header-left{
+    margin-left: 445px;
+}
+.header-left .now{
+    text-decoration: underline;
+}
+.header-right{
+    padding-bottom: 5px;
+}
+.header-right img{
+    position: relative;
+    top: 6px;
+}
+.header-botton{
+    display: flex;
+    gap: 210px;
+    justify-content: center;
+}
+.header-bottonleft{
+    display: flex;
+    gap: 232px;
+}
+.header-botton .header-bottonleft span{
+    display: inline-block;
+    padding-top: 25px;
+}
+.header-botton .input{
+    display: inline-block;
+    padding-top: 25px;
+    width: 230px;
+    height: 30px;
+    
+}
+.header-botton .input input{
+    width: 200px;
+    padding-left: 10px;
+    border: 1px solid gray;
+    margin-left: 10px;
+    border-radius: 4px;
+}
+.header-botton .input i{
+    position: relative;
+    bottom: 18px;
+    left: 200px;
+}
+.body{
+    display: flex;
+    margin-top: 60px;
+}
+.body-left{
+    margin-left: 135px;
+}
+.body-left img{
+    position: relative;
+    top: 2px;
+}
+.body-right{
+    margin-left: 200px;
+}
+.title{
+    margin-left: 135px;
+    margin-top: 80px;
+}
+.title h2{
+    padding-left: 15px;
+    color: #DB4444;
+    border-left: 13px solid #DB4444;
+}
+.flash-sale p{
+    margin-left: 175px;
+}
