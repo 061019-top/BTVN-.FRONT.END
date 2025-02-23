@@ -69,6 +69,7 @@
     margin-top: 80px;
 }
 .title h2{
+    width: 1170px;
     padding-left: 15px;
     color: #DB4444;
     border-left: 13px solid #DB4444;
@@ -93,7 +94,7 @@
 .product img{
     border-radius: 5px;
 }
-button{
+.button1{
     background-color: #DB4444;
     color: #fff;
     text-align: center;
@@ -128,4 +129,21 @@ button{
 .selection .camera{
     background-color: #DB4444;
     color: #fff;
+}
+.hr{
+    width: 1170px;
+    margin-left: 135px;
+}
+.category-two{
+    display: flex;
+    justify-content: space-between;
+}
+.button2{
+    width: 159px;
+    height: 56px;
+    background-color: #DB4444;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    margin-right: 200px;
 }
