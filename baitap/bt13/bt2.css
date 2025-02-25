@@ -147,3 +147,35 @@
     border-radius: 5px;
     margin-right: 200px;
 }
+/* đang được update  */
+.footer{
+    display: flex;
+    background-color: #000000;
+    color: #fff;
+    justify-content: space-evenly;
+}
+.footer .mot input{
+    padding-left: 10px;
+    height: 24px;
+    background-color: #000000;
+    border: 1px solid #fff;
+}
+.footer .mot .send{
+    border: none;
+    position: relative;
+    bottom: 41px;
+    left: 145px;
+}
+.endweb{
+    background-color: #000000;
+    color: #fff;
+    height: 60px;
+    position: relative;
+    bottom: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.endweb p{
+    opacity: 0.5;
+}
