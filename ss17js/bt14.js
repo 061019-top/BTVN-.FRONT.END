@@ -1,0 +1,10 @@
+let r = Number(prompt("nhập số bán kính: "));
+let h = Number(prompt("nhập số chiều cao: "));
+let sxq = 3.14 * Math.pow(r, 2);
+let stq = 3.14 * r * h;
+let vtru = 3.14 * Math.pow(r, 2);
+let chuvi = r * 2 * 3.14;
+console.log(`Dien tich xung quanh là: ${sxq}`);
+console.log(`Dien tich toàn phần là: ${stq}`);
+console.log(`Thể tích hình trụ là: ${vtru}`);
+console.log(`Chu vi đáy là: ${chuvi}`);
