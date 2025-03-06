@@ -1,14 +1,16 @@
-let number = prompt("Nhập một chuỗi:");
-
-if (!isNaN(number) && number.trim() !== "") {
-    let arr = number.split("").map(Number);
-    let max = arr[0];
-    for (let i = 1; i < arr.length; i++) {
-        if (arr[i] > max) {
-            max = arr[i];
+let numberArr = [2, 5, 7, 4, 1, 8, 6, 2, 5, 5, 5, 5, 7];
+let max = 0;
+let valueMax = 0;
+for (let i = 0; i <= 9; i++) {
+    let flag = 0;
+    for (let j = 0; j < numberArr.length; j++) {
+        if (numberArr[j] == i) {
+            flag++; 
         }
     }
-    console.log("Số lớn nhất là: " + max);
-} else {
-    console.log("Không hợp lệ");
+    if (flag > max) {
+        max = flag;
+        valueMax = i;
+    }
 }
+console.log("Giá trị xuất hiện nhiều nhất là: " + valueMax + " (xuất hiện " + max + " lần)");
