@@ -1,0 +1,128 @@
+<!-- let arr = [];
+let choice;
+let number;
+do {
+  console.log(`
+    ==============MENU=======================
+        1. Nhập mảng số nguyên
+        2. Hiển thị mảng
+        3. Tìm các phần tử chẵn và lẻ
+        4. Tính trung bình cộng của mảng
+        5. Xóa phần tử tại vị trí chỉ định
+        6. Tìm phần tử lớn thứ hai trong mảng
+        7. Thoát chương trình
+    =========================================
+        `);
+  choice = +prompt(`Nhập lượng chọn`);
+  switch (choice) {
+    case 1:
+      number = +prompt(`Nhập số lượng phần tử muốn thêm trong mảng`);
+      for (let i = 0; i < number; i++) {
+        let input = +prompt(`Nhập phần tử vị trí số ${i + i}`);
+        arr.push(index);
+      }
+      console.log(`Thêm phần tử cho mảnh thàh công`);
+      break;
+    case 2:
+      console.log(`Mảng arr = ${arr}`);
+
+      break;
+    case 3:
+      break;
+    case 4:
+      break;
+    case 5:
+      break;
+    case 6:
+      break;
+    case 7:
+      console.log(`Thoát chương trình`);
+      break;
+
+    default:
+      console.log(`Lựa chọn không hợp lệ`);
+      break;
+  }
+} while (choice !== 7);
+2
+ 
+let arr=[];
+do {console.log(`
+    1. Nhập mảng số nguyên
+    2. Hiển thị mảng
+    3. Tìm phần tử lớn nhất trong mảng và in ra chỉ số của nó
+    4. Tính tổng và trung bình cộng của các số dương trong mảng
+    5. Đảo ngược mảng
+    6. Kiểm tra mảng có đối xứng không
+    7. Thoát chương trình
+    `);
+    let choice=+prompt(`Mời bạn nhập lựa chọn`);
+    switch (choice) {
+        case 1:
+            let n=+prompt(`Nhập số lượng phần tử của mảng `);
+            for(let i = 0; i < n; i++){
+                let input =+prompt(`Nhập giá trị của phần tử số ${i+1}`)
+                arr.push(input)
+            }
+            break;
+        case 2:
+            console.log(`Mảng vừa thêm thành công là ${arr}`);
+            
+            break;
+        case 3:
+            let flag = 0;
+            for(let i = 0;i < arr.length; i++){
+                if(arr[i] > flag){
+                    flag=arr[i];   
+                }
+            }
+            console.log("Phần tử lớn nhất trong mảng là "+ flag);
+            
+            break;
+        case 4:
+            let sum = 0;
+            let ave =0 , count = 0;
+            for(let i = 0; i < arr.length; i++){
+                if(arr[i] > 0){
+                    sum += arr[i]
+                    count++;
+                }
+            }
+            console.log(`Tổng của mảng là ${sum}`);
+            ave = sum / count;
+            console.log(`Trung bình cộng của các số nguyên dương trong mảng là ${ave}`);
+            
+            
+            break;
+         case 5:
+            let index = 0;
+            for(let i = 0; i < arr.length; i++){
+                if(arr[i]!== arr[arr.length-1-i]){
+                    index++;
+                }
+            }
+            if (flag==0) {
+                console.log(`Đây là chuỗi đối xứng`);
+            } else {
+                console.log(`Mảng không tồn tại chuỗi đói xứng`);
+                
+            }
+
+            break;
+        case 6:
+            
+            break;
+        case 7:
+            console.log(`Thoát chương trình`);
+            
+            break;
+    
+    
+        default:
+            break;
+    }
+
+
+    
+} while (choice!==7);
+3 
