@@ -1,6 +1,6 @@
 // Tạo hàm kiểm tra tính hợp lệ của mật khẩu
 function isPasswordValid(password) {
-    if (password.length < 6) {
+    if (password.length < 8) {
         return false;
     }
 
