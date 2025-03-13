@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lưu trữ bài học YouTube</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        h1 {
+            color: #ffffff;
+            font-size: 26px;
+        }
+        .input-group {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        input, select {
+            width: 20%;
+            padding: 12px;
+            border: 2px solid #888;
+            border-radius: 8px;
+            font-size: 14px;
+            background: #fff;
+            color: black;
+        }
+        input {
+            autocomplete: off; /* Tắt gợi ý */
+        }
+        button {
+            padding: 12px 18px;
+            background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d);
+            color: rgb(66, 55, 55);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background: linear-gradient(to right, #fc5c7d, #6a82fb);
+            color: blue;
+        }
+        .video-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); /* Tăng chiều rộng tối thiểu */
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .video-item {
+            background: linear-gradient(to right, #fffbd5, #b20a2c);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
+        }
+        iframe {
+            width: calc(100% + 10px); /* Tăng chiều rộng thêm 10px */
+            margin-left: -5px; /* Căn giữa lại iframe sau khi tăng chiều rộng */
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .video-title-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to right, #870000, #190a05);
+            color: white;
+            padding: 10px 0;
+            font-size: 14px;
+            border-radius: 8px 8px 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lưu trữ bài học YouTube</h1>
+        <div class="input-group">
+            <input type="text" id="videoTitle" placeholder="Nhập tiêu đề..." autocomplete="off">
+            <input type="text" id="videoUrl" placeholder="Nhập link YouTube..." autocomplete="off">
+            <select id="videoCategory" onchange="updateVideoList()"></select>
+            <button onclick="addVideo()">Thêm</button>
+        </div>
+        <div>
+            <input type="text" id="newCategory" placeholder="Nhập tên danh mục..." autocomplete="off">
+            <button onclick="addCategory()">Thêm danh mục</button>
+            <button onclick="removeCategory()">Xóa danh mục</button>
+        </div>
+        <div class="video-list" id="videoList"></div>
+        <p id="noVideosMessage" style="display:none; color: lightgray;">Thư mục chưa tồn tại video nào</p>
+    </div>
+
+    <script>
+        let videos = JSON.parse(localStorage.getItem("videos")) || [];
+        let categories = JSON.parse(localStorage.getItem("categories")) || ["HTML", "CSS", "JavaScript"];
+
+        // Cập nhật danh sách danh mục
+        function updateCategoryList() {
+            let categorySelect = document.getElementById("videoCategory");
+            categorySelect.innerHTML = "";
+            categories.forEach(category => {
+                let option = document.createElement("option");
+                option.value = category;
+                option.textContent = category;
+                categorySelect.appendChild(option);
+            });
+            updateVideoList(); // Cập nhật danh sách video ngay sau khi danh mục thay đổi
+        }
+
+        // Thêm danh mục
+        function addCategory() {
+            let newCategoryInput = document.getElementById("newCategory");
+            let newCategory = newCategoryInput.value.trim();
+            if (newCategory && !categories.includes(newCategory)) {
+                categories.push(newCategory.toUpperCase()); // Danh mục luôn viết hoa
+                localStorage.setItem("categories", JSON.stringify(categories));
+                updateCategoryList();
+                newCategoryInput.value = "";
+            }
+        }
+
+        // Xóa danh mục
+        function removeCategory() {
+            let selectedCategory = document.getElementById("videoCategory").value;
+            if (confirm(`Bạn có chắc chắn muốn xóa danh mục '${selectedCategory}' không?`)) {
+                categories = categories.filter(category => category !== selectedCategory);
+                videos = videos.filter(video => video.category !== selectedCategory);
+                localStorage.setItem("categories", JSON.stringify(categories));
+                localStorage.setItem("videos", JSON.stringify(videos));
+                updateCategoryList();
+                updateVideoList();
+            }
+        }
+
+        // Thêm video
+        function addVideo() {
+            let titleInput = document.getElementById("videoTitle");
+            let urlInput = document.getElementById("videoUrl");
+            let categoryInput = document.getElementById("videoCategory");
+            let title = titleInput.value.trim();
+            let url = urlInput.value.trim();
+            let category = categoryInput.value;
+
+            // if (!title || !url) {
+            //     alert("Vui lòng nhập đầy đủ tiêu đề và link video!");
+            //     return;
+            // }
+
+            const videoID = extractYouTubeID(url);
+            if (!videoID) return; // Nếu link không hợp lệ, dừng lại
+
+            videos.push({ title, url: `https://www.youtube.com/embed/${videoID}`, category });
+            localStorage.setItem("videos", JSON.stringify(videos));
+            titleInput.value = "";
+            urlInput.value = "";
+            updateVideoList();
+        }
+
+        // Sửa video
+        function editVideo(index) {
+            let newTitle = prompt("Nhập tiêu đề mới:", videos[index].title);
+            if (newTitle !== null) {
+                videos[index].title = newTitle.trim();
+                localStorage.setItem("videos", JSON.stringify(videos));
+                updateVideoList(); // Cập nhật ngay sau khi sửa
+            }
+        }
+
+        // Xóa video
+        function deleteVideo(index) {
+            if (confirm("Bạn có chắc chắn muốn xóa video này không?")) {
+                videos.splice(index, 1);
+                localStorage.setItem("videos", JSON.stringify(videos));
+                updateVideoList();
+            }
+        }
+
+        // Hiển thị danh sách video theo danh mục
+        function updateVideoList() {
+            let category = document.getElementById("videoCategory").value;
+            let filteredVideos = videos.filter(video => video.category === category);
+            let list = document.getElementById("videoList");
+            let noVideosMessage = document.getElementById("noVideosMessage");
+            list.innerHTML = "";
+
+            if (filteredVideos.length === 0) {
+                noVideosMessage.style.display = "block";
+            } else {
+                noVideosMessage.style.display = "none";
+                filteredVideos.forEach((video, index) => {
+                    let div = document.createElement("div");
+                    div.className = "video-item";
+                    div.innerHTML = `
+                        <div class="video-title-overlay">${video.title}</div>
+                        <iframe src="${video.url}" frameborder="0" allowfullscreen></iframe>
+                        <button onclick="editVideo(${index})">Sửa</button>
+                        <button onclick="deleteVideo(${index})">Xóa</button>
+                    `;
+                    list.appendChild(div);
+                });
+            }
+        }
+
+        // Trích xuất ID video từ link YouTube
+        function extractYouTubeID(url) {
+            const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]+)/;
+            const match = url.match(regex);
+            if (match && match[1]) {
+                return match[1];
+            } else {
+                alert("Link YouTube không hợp lệ. Vui lòng nhập lại!");
+                return null;
+            }
+        }
+
+        // Khởi chạy
+        updateCategoryList();
+    </script>
+</body>
+</html>
