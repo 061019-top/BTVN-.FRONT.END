@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .header {
+      background-color: white;
+    }
+    .note {
+      text-align: center;
+      background-color: rgb(125, 49, 49);
+      width: 200px;
+      height: 50px;
+      line-height: 50px;
+      border-radius: 8px;
+      position: relative;
+      left: 150px;
+      bottom: 40px;
+      display: none;
+    }
+    .note .exit {
+      position: absolute;
+      bottom: 15px;
+      left: 185px;
+      border: none;
+      background-color: none;
+    }
+  </style>
+  <body>
+    <div class="header">
+      <h1>Modal Example</h1>
+      <button class="open">Open Modal</button>
+      <div class="note">
+        <p>Some text in the Modal</p>
+        <buttons class="exit">X</buttons>
+      </div>
+    </div>
+    <script src="./bt4.js"></script>
+  </body>
+</html>

@@ -101,7 +101,7 @@ function exitProgram() {
 function managePhoneStore() {
   let isRunning = true;
   while (isRunning) {
-    console.log("\nQUẢN LÝ CỬA HÀNG ĐIỆN THOẠI");
+    console.log("QUẢN LÝ CỬA HÀNG ĐIỆN THOẠI");
     console.log("1. Hiển thị điện thoại theo hãng");
     console.log("2. Thêm điện thoại mới vào cửa hàng");
     console.log("3. Tìm kiếm điện thoại theo tên hoặc id");
