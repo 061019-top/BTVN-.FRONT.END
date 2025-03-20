@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .validEmail {
+        color: green;
+      }
+      .invalidEmail {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" placeholder="nhap email" /> <br />
+    <p style="display: none"></p>
+    <button onclick="validateEmail()">check</button>
+    <script>
+      function validateEmail() {
+        if (
+          document.getElementsByTagName("input")[0].value.includes("@") &&
+          (document.getElementsByTagName("input")[0].value.endsWith(".com") ||
+            document.getElementsByTagName("input")[0].value.endsWith(".abc"))
+        ) {
+          document.getElementsByTagName("p")[0].className = "validEmail";
+          document.getElementsByTagName("p")[0].style.display = "block";
+          document.getElementsByTagName("p")[0].textContent = "email hop le!";
+        } else {
+          document.getElementsByTagName("p")[0].className = "invalidEmail";
+          document.getElementsByTagName("p")[0].style.display = "block";
+          document.getElementsByTagName("p")[0].textContent =
+            "email khong hop le!";
+        }
+      }
+    </script>
+  </body>
+</html>
