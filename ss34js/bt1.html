@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(244, 244, 244);
+        }
+        .container{
+            background-color: white;
+            border-radius: 10px;
+            width: fit-content;
+            height: fit-content;
+            padding: 20px;
+            margin: auto;
+        }
+        .container input{
+            margin: 10px 0 10px 0;
+            width: 380px;
+            height: 30px;
+            border-radius: 5px;
+            padding: 5px;
+            opacity: 0.5;
+        }
+        .container button{
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            background-color: dodgerblue;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center><h1>Register</h1></center>
+        <label for="">Email:</label> <br>
+        <input id="email" type="text" placeholder="Enter your email address"><br>
+        <label for="">Password:</label> <br>
+        <input id="password" type="password" placeholder="Enter your password"><br>
+        <label for="">Confirm Password:</label> <br>
+        <input id="confirmPassword" type="password" placeholder="Confirm your password"><br>
+        <button onclick="register()">Register</button>
+    </div>
+    <script>
+        function register(){
+            let users=JSON.parse(localStorage.getItem("user"))||[];
+            let email=document.getElementById("email").value.trim();
+            let password=document.getElementById("password").value.trim();
+            let confirmPassword=document.getElementById("confirmPassword").value.trim();
+            if(email.length ==0 || password.length==0 || confirmPassword.length==0){
+                alert("khong duoc de trong du lieu");
+                return;
+            }
+            if((users.findIndex((item) => item.email==email))!=-1){
+                alert("email da ton tai");
+                return;
+            }
+            if(confirmPassword!=password){
+                alert("confirm password va password khong trung nhau");
+                return;
+            }
+            users.push({email, password});
+            localStorage.setItem("user", JSON.stringify(users));
+            alert("dang ky thanh cong");
+        }
+    </script>
+</body>
+</html>

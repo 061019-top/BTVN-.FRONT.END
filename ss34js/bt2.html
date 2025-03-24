@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            padding: 0;margin: 0;
+        }
+        body{
+            background-color: rgb(244, 244, 244);
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            margin: 20px;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        .container .submitLine{
+            display: flex;
+            gap: 7px;
+            align-items: center;
+        }
+        .container .submitLine input{
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid rgb(150, 150, 150);
+            opacity: 0.8;
+            padding: 5px;
+        }
+        .container .submitLine select{
+            opacity: 0.8;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid rgb(150, 150, 150);
+            opacity: 0.8;
+            padding: 5px;
+        }
+        .container .submitLine button{
+            width: 50px;
+            height: 30px;
+            border-radius: 5px;
+            border: none;
+            background-color: dodgerblue;
+            color: white;
+        }
+        .container h1{
+            padding: 20px;
+        }
+        .container table{
+            margin-top: 20px;
+            width: 1000px;
+            height: fit-content;
+            text-align: left;
+            border-collapse:collapse ;
+        }
+        .container tr{
+            border-bottom: 1px solid rgb(204, 204, 204);
+        }
+        .container th{
+            background-color: rgb(234, 234, 234);
+            padding: 10px;
+        }
+        .container td{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Task Management</h1>
+        <div class="submitLine">
+            <input type="text" id="content" placeholder="Content">
+            <input type="date" id="date">
+            <select name="" id="status">
+                <option value=""hidden selected>Choose status</option>
+                <option value="pending">Pending</option>
+            </select>
+            <input type="text" id="assignedTo" placeholder="Username">
+            <button onclick="addCourse()">Submit</button>
+        </div>
+        <table>
+            <tr>
+                <th>#</th>
+                <th>Content</th>
+                <th>Due date</th>
+                <th>Status</th>
+                <th>Assigned to</th>
+                <th>Action</th>
+            </tr>
+        </table>
+    </div>
+    <script>
+        function printCourse(){
+            let courses=JSON.parse(localStorage.getItem("courses"))||[
+                                                                    {
+                                                                        id: 1,
+                                                                        content: 'Learn Javascript Session 01',
+                                                                        dueDate: '2023-04-17',
+                                                                        status: 'Pending',
+                                                                        assignedTo: 'Anh Bách',
+                                                                    },
+                                                                    {
+                                                                        id: 2,
+                                                                        content: 'Learn Javascript Session 2',
+                                                                        dueDate: '2023-04-17',
+                                                                        status: 'Pending',
+                                                                        assignedTo: 'Lâm',
+                                                                    },
+                                                                    {
+                                                                        id: 3,
+                                                                        content: 'Learn CSS Session 1',
+                                                                        dueDate: '2023-04-17',
+                                                                        status: 'Pending',
+                                                                        assignedTo: 'Hiếu Ci Ớt Ớt',
+                                                                    },
+                                                                    ]
+            localStorage.setItem("courses", JSON.stringify(courses));
+            str="";
+            courses.forEach((item, index) => {
+                str+=`
+                <tr>
+                    <td>${item.id}</td>
+                    <td>${item.content}</td>
+                    <td>${item.dueDate}</td>
+                    <td>${item.status}</td>
+                    <td>${item.assignedTo}</td>
+                    <td><button onclick="changeCourse(${index})">sua</button> <button onclick="deleteCourse(${index})">xoa</button></td>
+                </tr>`
+            })
+            document.getElementsByTagName("table")[0].innerHTML+=str;
+        }
+        printCourse();
+        function addCourse(){
+            let courses=[];
+            let courses2=JSON.parse(localStorage.getItem("courses"));
+            let content=document.getElementById("content").value.trim();
+            let date=document.getElementById("date").value.trim();
+            let status=document.getElementById("status").value.trim();
+            let assignedTo=document.getElementById("assignedTo").value.trim();
+            if(content.length==0 || date.length==0 || status.length==0 || assignedTo.length==0){
+                alert("khong duoc de trong du lieu");
+                return;
+            }
+            courses.push({
+                id: courses2.length+1,
+                content: content,
+                dueDate: date,
+                status: status,
+                assignedTo: assignedTo
+            });
+            localStorage.setItem("courses", JSON.stringify(courses));
+            printCourse();
+            document.getElementById("content").value = "";
+            document.getElementById("date").value = "";
+            document.getElementById("status").value = "";
+            document.getElementById("assignedTo").value = "";
+            alert("them thanh cong");
+        }
+        function deleteCourse(i){
+            let courses=JSON.parse(localStorage.getItem("courses"));
+            courses.splice(i, 1);
+            localStorage.setItem("courses", JSON.stringify(courses));
+            document.querySelector("table").innerHTML = `
+            <tr>
+                <th>#</th>
+                <th>Content</th>
+                <th>Due date</th>
+                <th>Status</th>
+                <th>Assigned to</th>
+                <th>Action</th>
+            </tr>`;
+            printCourse();
+            alert("xoa thanh cong");
+        }
+    </script>
+</body>
+</html>

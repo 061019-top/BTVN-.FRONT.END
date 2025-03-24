@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 30%;
+            height: 400px;
+            border: 1px solid black;
+            margin: 10px auto;
+            border-radius: 10px;
+            background-color: rgb(180, 251, 251);
+        }
+        h1{
+            text-align: center;
+            margin-top: 20px;
+        }
+        .logIn{
+            width: 90%;
+            height: 330px;
+            margin: 0 auto;
+            line-height: 50px;
+        }
+        .logIn input{
+            width: 100%;
+            height: 40px;
+            border-radius: 5px;
+            border: none;
+        }
+        .logIn input::placeholder{
+            padding-left: 10px; 
+        }
+        button{
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgb(0, 102, 255);
+            color: white;
+        }
+        .signInAndSignUp{
+            display: flex;
+            justify-content: space-between;
+        }
+        a{
+            text-decoration: none;
+            color: rgb(0, 42, 255);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <div class="logIn">
+            <label for="">Email:</label><br>
+            <input type="text" name="" id="email" placeholder="Enter your email address"><br>
+            <label for="">PassWord:</label><br>
+            <input type="pass" name="" id="pass" placeholder="Enter your password"><br>
+            <button onclick="btn()">Login</button><br>
+            <div class="signInAndSignUp">
+            <a href="">Forgot password!!</a>
+            <span>or</span>
+            <a href="">SignUp</a>
+        </div>
+        </div>
+    </div>
+    <script>
+        let users = JSON.parse(localStorage.getItem("users"))||[];
+        function btn() {
+            let email = document.getElementById("email").value;
+            let pass = document.getElementById("pass").value;
+            for (let i= 0; i < users.length; i++) {
+                if(users[i].email==email && users[i].pass==pass){
+                    window.location.href="./home.html";
+                    return;
+                }
+            }
+            console.log("tài khoản hoặc mật khẩu không đúng");
+        }
+    </script>
+</body>
+</html>
