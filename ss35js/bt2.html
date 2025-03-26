@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .container{
+            width: 150px;
+            height: 50px;
+            margin: 0 auto;
+        }
+        .button button  {
+            width: 150%;
+            height: 50px;
+            border: none;
+            border-radius: 10px;
+            background-color: rgb(70, 68, 68);
+            color: white;
+        }
+         .input{
+            width: 400px;
+            height: 300px;
+            background-color: beige;
+            display: none;
+         }
+         .input .title{
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(178, 115, 237);
+            color: white;
+         }
+         .input .title span{
+            padding-left: 10px;
+         }
+         .input .title i{
+            padding-right: 10px;    
+         }
+         .input .main{
+            width: 100%;
+            height: 150px;
+            margin-top: 20px;
+            padding-left: 10px;
+            color: rgb(178, 115, 237);
+            line-height: 30px;
+         }
+         .input .main input{
+           width: 92%;
+           height: 30px;
+           border-radius: 10px;
+           border: 1px solid rgb(178, 115, 237);
+         }
+         .input .main button{
+            width: 80px;
+            height: 30px;
+            margin-top: 20px;
+            border-radius: 10px;
+            border: none;
+            background-color:rgb(178, 115, 237) ;
+            color: white;
+         }
+         .button .content{
+            margin-top: 10px;
+            width: 200px;
+            height: 100px;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            background-color: rgb(70, 68, 68);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            /* display: none; */
+         }
+         .button .content i{
+            display: flex;
+            justify-content: end;
+            padding-right: 10px;
+         }
+         .button .content .nameWeb{
+            padding-left: 20px;
+         }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="button">
+            <button onclick="add()">ADD BOOKMARK</button>
+            <div class="contentBig">
+
+            </div>
+        </div>
+        <div class="input">
+            <div class="title">
+                <span> Add BookMark</span>
+                <i class="fa-solid fa-xmark" onclick="closeAdd()"></i>
+            </div>
+            <div class="main">
+                <label for="">Website Name</label><br>
+                <input type="text" name="" id="name"><br>
+                <label for="">Website URL</label><br>
+                <input type="text" name="" id="url"><br>
+                <button onclick="inputNameWeb()">Save</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function  add() {
+            document.getElementsByClassName("input")[0].style.display="block";
+        }
+        function closeAdd(){
+            document.getElementsByClassName("input")[0].style.display="none";
+        }
+        //xóa
+        function closeName(i){
+            let choice = confirm("bạn có muốn xóa không");
+            if(choice){
+                let arrs = JSON.parse(localStorage.getItem("arr"))||[];
+                arrs.splice(i,1);
+                localStorage.setItem("arr",JSON.stringify(arrs));
+                render();
+            }
+        }
+        //in
+        function render(){
+            let arrs = JSON.parse(localStorage.getItem("arr"))||[{name:"a",a:"a"}];
+            let str = "";
+            for(let i = 0 ; i < arrs.length ; i++){
+                str += `
+                    <div class="content">
+                    <i class="fa-solid fa-xmark" onclick="closeName(${i})"></i>
+                    <a url="" class="nameWeb">
+                        ${arrs[i].name};
+                    </a>
+                </div>
+                `;
+                document.getElementsByClassName("contentBig")[0].style.display = "block";
+                document.getElementsByClassName("contentBig")[0].innerHTML=str;
+            }
+        }
+        //nhập
+        function inputNameWeb(){
+            let arrs = JSON.parse(localStorage.getItem("arr"))||[];
+            let nameWeb = document.getElementById("name").value;
+            let url = document.getElementById("url").value;
+            if(nameWeb == "" || url == ""){
+                alert("nhập đầy đủ")
+            }else{
+                //thêm vào  mảng
+                arrs.push({name:nameWeb,url:url});
+                //lưu vào local
+                localStorage.setItem("arr",JSON.stringify(arrs));
+                render();
+                closeAdd();
+                document.getElementById("name").value="";
+                document.getElementById("url").value="";
+            }
+        }
+
+        render();
+    </script>
+</body>
+</html>
