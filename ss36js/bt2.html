@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .child {
+      display: flex;
+      flex-direction: row;
+    }
+    img {
+      border-radius: 10px;
+    }
+    .child-one {
+      padding-left: 10px;
+    }
+    .sum {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+    }
+  </style>
+  <body>
+    <h2 class="h2">Bạn thích món nào nhất? 🍽️</h2>
+    <div class="sum">
+      
+    </div>
+    <script>
+
+        let dish=JSON.parse(localStorage.getItem("name"));
+        function render(){
+            let str=""
+            for(let i=0; i< dish.length; i++){
+                str+=`
+                    <div class="child">
+                        <img
+                            src="${dish[i].img}"
+                            alt=""
+                            width="150px"
+                            height="120px"
+                        />
+                        <div class="child-one">
+                            <p>${dish[i].name}</p>
+                            <p>❤️ ${dish[i].like}</p>
+                            <button onclick="like(${i})">Thích +1</button>
+                        </div>
+                    </div>
+        `
+            }
+            document.getElementsByClassName("sum")[0].innerHTML = str;
+        }
+        render()
+        function like(index){
+          dish[index].like = dish[index].like+1
+          localStorage.setItem("menu",JSON.stringify("dish"))
+          render()
+        }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .header {
+      position: relative;
+      top: 100px;
+      left: 300px;
+    }
+    .header-child {
+      position: relative;
+      right: 40px;
+    }
+    .supmit{
+        background-color: blue;
+        color: #fff;
+    }
+    .hello {
+      display: none;
+    }
+  </style>
+  <body>
+    <div class="header">
+      <label for=""><h3>Nhập tên của bạn</h3></label>
+      <div class="header-child">
+        <input type="text" class="input1" />
+        <button onclick="" class="supmit">Lưu</button>
+        <h2 class="hello">✌️Chào bạn</h2>
+        <button onclick="" class="supmit">Đổi tên</button>
+      </div>
+    </div>
+    <script>
+      document
+        .getElementsByClassName("supmit")[0]
+        .addEventListener("click", () => {
+          document.getElementsByClassName("hello")[0].style.display = "block";
+        });
+      function addName() {
+        let name = getElementsByClassName("input1")[0].value;
+        localStorage.setItem("name", name);
+        document.getElementsByClassName("hello")[0].textContent="✌️Chào bạn, " + name;
+        document.getElementsByClassName("name").value = ""
+      }
+      function showText(){
+        let name = localStorage.getItem("name");
+        document.getElementsByClassName("hello").textContent="✌️Chào bạn, " + name;
+      }
+      showText()
+      function changeName(){
+        let name = localStorage.getItem("name");
+        document.getElementsByClassName("name").value = name;
+      }
+    </script>
+  </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .header {
+      position: relative;
+      top: 100px;
+      left: 300px;
+    }
+    .header-child {
+      position: relative;
+      right: 40px;
+    }
+    .supmit {
+      background-color: blue;
+      color: #fff;
+    }
+    .hello {
+      display: none;
+    }
+  </style>
+  <body>
+    <div class="header">
+      <label for=""><h3>Nhập tên của bạn</h3></label>
+      <div class="header-child">
+        <input type="text" class="input1" />
+        <button class="supmit" onclick="addName()">Lưu</button>
+        <h2 class="hello">✌️Chào bạn</h2>
+        <button class="supmit" onclick="changeName()">Đổi tên</button>
+      </div>
+    </div>
+    <script>
+      function addName() {
+        let name = document.getElementsByClassName("input1")[0].value;
+        localStorage.setItem("name", name);
+        document.getElementsByClassName("hello")[0].style.display = "block";
+        document.getElementsByClassName("hello")[0].textContent =
+          "✌️Chào bạn, " + name;
+        document.getElementsByClassName("input1")[0].value = "";
+      }
+
+      function showText() {
+        let name = localStorage.getItem("name");
+        if (name) {
+          document.getElementsByClassName("hello")[0].textContent =
+            "✌️Chào bạn, " + name;
+          document.getElementsByClassName("hello")[0].style.display = "block";
+        }
+      }
+
+      function changeName() {
+        let name = localStorage.getItem("name");
+        if (name) {
+          document.getElementsByClassName("input1")[0].value = name;
+        }
+      }
+
+      showText();
+    </script>
+  </body>
+</html>
